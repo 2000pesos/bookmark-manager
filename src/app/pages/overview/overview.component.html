@@ -1,1 +1,31 @@
-<p>overview works!</p>
+<!-- Form -->
+<form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
+  <label for="url">Bookmark URL</label>
+  <input id="url" type="text" formControlName="url" />
+  <div *ngIf="bookmarkForm.get('url')?.touched && bookmarkForm.invalid">
+    <small *ngIf="bookmarkForm.get('url')?.errors?.['required']">URL is required.</small>
+    <small *ngIf="bookmarkForm.get('url')?.errors?.['invalidUrl']">Must be a valid URL.</small>
+  </div>
+  <button type="submit" [disabled]="bookmarkForm.invalid">Add Bookmark</button>
+</form>
+
+<!-- Bookmark List -->
+<ul *ngIf="bookmarks.length > 0">
+  <li *ngFor="let b of bookmarks">
+    <a [href]="b.url" target="_blank">{{ b.url }}</a>
+    <button (click)="deleteBookmark(b.id)">Delete</button>
+  </li>
+</ul>
+<p *ngIf="bookmarks.length === 0">No bookmarks found.</p>
+
+<!-- Pagination -->
+<nav *ngIf="totalPages > 1">
+  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
+  <button
+    *ngFor="let page of [].constructor(totalPages); let i = index"
+    [class.active]="currentPage === i + 1"
+    (click)="changePage(i + 1)">
+    {{ i + 1 }}
+  </button>
+  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
+</nav>
