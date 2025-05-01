@@ -46,7 +46,7 @@ export class OverviewComponent implements OnInit {
       const url = this.bookmarkForm.value.url;
       const saved = this.bookmarkService.addBookmark(url);
       this.bookmarkForm.reset();
-
+      this.loadBookmarks();
       this.router.navigate(['/result'], {
         state: { submitted: saved }
       });
