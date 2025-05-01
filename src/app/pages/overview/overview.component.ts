@@ -8,7 +8,7 @@ import {
   AbstractControl, 
   ValidationErrors 
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { BookmarkService, Bookmark } from '../../services/bookmark.service';
 
@@ -30,10 +30,15 @@ export class OverviewComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private bookmarkService: BookmarkService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute
   ) {}
 
   public ngOnInit(): void {
+    this.route.queryParamMap.subscribe(params => {
+      this.currentPage = parseInt(params.get('page') || '1', 10);
+      this.loadBookmarks();
+    });
     this.bookmarkForm = this.fb.group({
       url: ['', [Validators.required, this.urlValidator]]
     });
@@ -47,15 +52,18 @@ export class OverviewComponent implements OnInit {
       const saved = this.bookmarkService.addBookmark(url);
       this.bookmarkForm.reset();
       this.loadBookmarks();
-      this.router.navigate(['/result'], {
+      this.router.navigate(['/result', saved.id], {
         state: { submitted: saved }
       });
     }
   }
 
   public changePage(page: number): void {
-    this.currentPage = page;
-    this.loadBookmarks();
+    this.router.navigate([], {
+      relativeTo: this.route,
+      queryParams: { page },
+      queryParamsHandling: 'merge'
+    });
   }
 
   public deleteBookmark(id: string): void {
