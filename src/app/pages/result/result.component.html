@@ -1,0 +1,11 @@
+<h2>Thank you for your submission!</h2>
+
+<div *ngIf="bookmark; else notFound">
+  <p>You submitted: <a [href]="bookmark.url" target="_blank">{{ bookmark.url }}</a></p>
+</div>
+
+<ng-template #notFound>
+  <p>No bookmark found. It may have been deleted or the link is incorrect.</p>
+</ng-template>
+
+<a routerLink="/overview">Back to Overview</a>
