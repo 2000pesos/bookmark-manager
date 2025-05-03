@@ -1,4 +1,4 @@
-<h2>Thank you for your submission!</h2>
+<h2 *ngIf="showThankYou">Thank you for your submission!</h2>
 
 <div *ngIf="bookmark; else notFound">
   <p>You submitted: <a [href]="bookmark.url" target="_blank">{{ bookmark.url }}</a></p>

@@ -13,6 +13,7 @@
 <ul *ngIf="bookmarks.length > 0">
   <li *ngFor="let b of bookmarks">
     <a [href]="b.url" target="_blank">{{ b.url }}</a>
+    <button (click)="viewBookmarkDetails(b.id)">Details</button>
     <button (click)="deleteBookmark(b.id)">Delete</button>
   </li>
 </ul>

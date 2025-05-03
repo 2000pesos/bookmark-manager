@@ -71,6 +71,10 @@ export class OverviewComponent implements OnInit {
     this.loadBookmarks();
   }
 
+  public viewBookmarkDetails(id: string): void {
+    this.router.navigate(['/result', id]);
+  }
+
   private loadBookmarks(): void {
     this.bookmarks = this.bookmarkService.getListOfBookmarks(this.currentPage, this.PER_PAGE);
     this.totalPages = this.bookmarkService.getTotalPages(this.PER_PAGE);
