@@ -1,0 +1,129 @@
+.bookmark-form {
+  margin-bottom: 24px;
+  padding: 16px;
+}
+
+.full-width {
+  width: 100%;
+}
+
+.page-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: auto;
+  padding: 24px 24px;
+  height: 100vh;
+  max-width: 960px;
+  width: 100%;
+  box-sizing: border-box;
+}
+mat-card.bookmark-form,
+mat-card.bookmark-pagination {
+  flex-shrink: 0; /* prevent these from shrinking */
+  flex-grow: 1;
+}
+mat-card.bookmark-list {
+  min-height: 40vh;
+  max-height: 60vh;
+}
+mat-card.bookmark-form, 
+mat-card.bookmark-list, 
+mat-card.bookmark-pagination {
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  box-sizing: border-box;
+  margin-bottom: 1em;
+}
+mat-card .mat-mdc-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* BOOKMARK FORM */
+mat-card.bookmark-list mat-list {
+  overflow-y: auto;
+  max-height: 100%;
+  padding-right: 4px; /* prevent scrollbar overlap */
+}
+
+.mat-form-field {
+  flex: 1;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.flex-grow {
+  flex: 1;
+}
+
+.error-row {
+  margin-top: 4px;
+  color: red;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+mat-form-field {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+mat-card.bookmark-form button[type="submit"] {
+  align-self: flex-start;
+  white-space: nowrap;
+  height: 56px;
+}
+
+/* BOOKMARKS LIST */
+.list-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.bookmark-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.bookmark-link {
+  color: #1a73e8;
+  font-weight: 500;
+  text-decoration: none;
+  flex: 1;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  display: inline-block;
+}
+
+.empty-text {
+  color: gray;
+  font-style: italic;
+  margin: 1rem 0 0 0.5rem;
+}
+
+/* PAGINATION */
+.bookmark-pagination {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}

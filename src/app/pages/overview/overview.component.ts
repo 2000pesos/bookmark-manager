@@ -11,13 +11,31 @@ import {
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { BookmarkService, Bookmark } from '../../services/bookmark.service';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatList, MatListItem } from '@angular/material/list';
+import { MatIcon } from '@angular/material/icon';
+import { MatTooltip } from '@angular/material/tooltip';
 
 @Component({
   standalone: true,
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.css'],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [
+    CommonModule, 
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule,
+    MatList,
+    MatListItem,
+    MatIcon,
+    MatTooltip
+  ]
 })
 
 export class OverviewComponent implements OnInit {

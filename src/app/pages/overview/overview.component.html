@@ -1,32 +1,80 @@
-<!-- Form -->
-<form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
-  <label for="url">Bookmark URL</label>
-  <input id="url" type="text" formControlName="url" />
-  <div *ngIf="bookmarkForm.get('url')?.touched && bookmarkForm.invalid">
-    <small *ngIf="bookmarkForm.get('url')?.errors?.['required']">URL is required.</small>
-    <small *ngIf="bookmarkForm.get('url')?.errors?.['invalidUrl']">Must be a valid URL.</small>
-  </div>
-  <button type="submit" [disabled]="bookmarkForm.invalid">Add Bookmark</button>
-</form>
-
-<!-- Bookmark List -->
-<ul *ngIf="bookmarks.length > 0">
-  <li *ngFor="let b of bookmarks">
-    <a [href]="b.url" target="_blank">{{ b.url }}</a>
-    <button (click)="viewBookmarkDetails(b.id)">Details</button>
-    <button (click)="deleteBookmark(b.id)">Delete</button>
-  </li>
-</ul>
-<p *ngIf="bookmarks.length === 0">No bookmarks found.</p>
-
-<!-- Pagination -->
-<nav *ngIf="totalPages > 1">
-  <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">&lt;</button>
-  <button
-    *ngFor="let page of [].constructor(totalPages); let i = index"
-    [class.active]="currentPage === i + 1"
-    (click)="changePage(i + 1)">
-    {{ i + 1 }}
-  </button>
-  <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">&gt;</button>
-</nav>
+<div class="page-container">
+  <mat-card class="bookmark-form">
+    <mat-card-title>Add a Bookmark</mat-card-title>
+    
+    <form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
+      <div class="form-row">
+        <mat-form-field appearance="fill">
+          <mat-label>Bookmark URL</mat-label>
+          <input matInput formControlName="url" placeholder="https://example.com" />
+        </mat-form-field>
+  
+        <button mat-raised-button color="primary" type="submit" [disabled]="bookmarkForm.invalid">
+          Add Bookmark
+        </button>
+      </div>
+      <div class="error-row">
+        <mat-error *ngIf="bookmarkForm.get('url')?.hasError('invalidUrl') && bookmarkForm.get('url')?.touched">
+          Please enter a valid URL
+        </mat-error>
+      </div>
+    </form>
+  </mat-card>
+  <mat-card class="bookmark-list">
+    <mat-card-title>Saved Bookmarks</mat-card-title>
+  
+    <ng-container *ngIf="bookmarks.length > 0; else noBookmarks">
+      <mat-list>
+        <mat-list-item *ngFor="let bookmark of bookmarks">
+          <div class="list-content">
+            <a matTooltip="{{ bookmark.url }}" class="bookmark-link" [href]="bookmark.url" target="_blank">
+              {{ bookmark.url }}
+            </a>
+            <div class="bookmark-actions">
+              <button mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
+                <mat-icon>visibility</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </div>
+        </mat-list-item>
+      </mat-list>
+    </ng-container>
+  
+    <ng-template #noBookmarks>
+      <p class="empty-text">No bookmarks yet. Add one above!</p>
+    </ng-template>
+  </mat-card>
+  <mat-card *ngIf="totalPages > 1" class="bookmark-pagination">
+    <mat-card-content class="pagination-controls">
+      <button
+        mat-icon-button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        aria-label="Previous page">
+        <mat-icon>chevron_left</mat-icon>
+      </button>
+  
+      <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+        <button
+          mat-button
+          [color]="currentPage === i + 1 ? 'primary' : undefined"
+          (click)="changePage(i + 1)">
+          {{ i + 1 }}
+        </button>
+      </ng-container>
+  
+      <button
+        mat-icon-button
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        aria-label="Next page">
+        <mat-icon>chevron_right</mat-icon>
+      </button>
+    </mat-card-content>
+  </mat-card>
+  
+  
+</div>
