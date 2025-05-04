@@ -21,19 +21,32 @@ import { MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle 
 })
 export class ResultComponent {
   bookmark: Bookmark | null = null;
+  BookmarkService: BookmarkService | null = null;
   showThankYou = false;
   tags = [];
-  description = null;
-  title = null;
+  description: string | null = null;
+  title: string | null = null;
 
   constructor(private route: ActivatedRoute, private router: Router, private bookmarkService: BookmarkService) {
     const id = this.route.snapshot.paramMap.get('id');
-    console.log('id in commponenet', id)
-    const navState = this.router.getCurrentNavigation()?.extras?.state;
-    console.log('navstate', navState);
     this.bookmark = this.bookmarkService.getListOfBookmarks().find(b => b.id === id) ?? null;
-    console.log('this.bookmark', this.bookmark);
+    const navState = this.router.getCurrentNavigation()?.extras?.state;
     this.showThankYou = !!navState?.['submitted'];
 
+  }
+  public ngOnInit(): void {
+    if (this.bookmark?.url) {
+      this.bookmarkService.fetchMetadata(this.bookmark.url).subscribe({
+        next: (data) => {
+          this.title = data.title;
+          this.description = data.description;
+        },
+        error: (err) => {
+          console.error('Scrape failed', err);
+          this.title = "Could not fetch title.";
+          this.description = "Could not fetch description";
+        }
+      });
+    }
   }
 }

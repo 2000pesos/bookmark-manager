@@ -2,12 +2,12 @@
   <!-- Bookmark Metadata -->
   <mat-card class="bookmark-card">
     <mat-card-title>Bookmark Details</mat-card-title>
-    <mat-card-subtitle *ngIf="bookmark?.url">Title loading...</mat-card-subtitle>
+    <mat-card-subtitle *ngIf="bookmark?.url">{{ title || 'Title loading...' }}</mat-card-subtitle>
     <mat-card-content>
       <p><strong>URL:</strong> <a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></p>
       <p><strong>ID:</strong> {{ bookmark?.id }}</p>
       <p><strong>Created:</strong> {{ bookmark?.createdAt | date: 'medium' }}</p>
-      <p><strong>Description:</strong>Description loading...</p>
+      <p><strong>Description:</strong>{{ description || 'Description loading...' }}</p>
       <p><strong>Tags:</strong> <span *ngIf="tags.length > 0; else noTags">{{ tags.join(', ') }}</span></p>
       <ng-template #noTags><em>Tags loading...</em></ng-template>
     </mat-card-content>

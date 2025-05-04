@@ -1,5 +1,6 @@
 // bookmark.service.ts
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 export interface Bookmark {
   id: string;
@@ -11,9 +12,16 @@ export interface Bookmark {
   providedIn: 'root',
 })
 export class BookmarkService {
-  constructor() {}
+  constructor(private http: HttpClient) {}
   private static readonly STORAGE_KEY = 'bookmarks';
 
+  public fetchMetadata(url: string) {
+    const encoded = encodeURIComponent(url);
+    return this.http.get<{ title: string; description: string }>(
+      `http://localhost:3400/api/scrape?url=${encoded}`
+    );
+  }
+  
   public getListOfBookmarks(page?: number, perPage: number = 20): Bookmark[] {
     const bookmarks = this.getBookmarks();
 
