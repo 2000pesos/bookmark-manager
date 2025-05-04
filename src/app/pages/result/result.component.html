@@ -1,11 +1,39 @@
-<h2 *ngIf="showThankYou">Thank you for your submission!</h2>
+<div class="result-container">
+  <!-- Bookmark Metadata -->
+  <mat-card class="bookmark-card">
+    <mat-card-title>Bookmark Details</mat-card-title>
+    <mat-card-subtitle *ngIf="bookmark?.url">Title loading...</mat-card-subtitle>
+    <mat-card-content>
+      <p><strong>URL:</strong> <a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></p>
+      <p><strong>ID:</strong> {{ bookmark?.id }}</p>
+      <p><strong>Created:</strong> {{ bookmark?.createdAt | date: 'medium' }}</p>
+      <p><strong>Description:</strong>Description loading...</p>
+      <p><strong>Tags:</strong> <span *ngIf="tags.length > 0; else noTags">{{ tags.join(', ') }}</span></p>
+      <ng-template #noTags><em>Tags loading...</em></ng-template>
+    </mat-card-content>
+  </mat-card>
 
-<div *ngIf="bookmark; else notFound">
-  <p>You submitted: <a [href]="bookmark.url" target="_blank">{{ bookmark.url }}</a></p>
+  <!-- Site Preview -->
+  <mat-card class="preview-card">
+    <mat-card-title>Site Preview</mat-card-title>
+    <mat-card-content>
+      <div class="preview-placeholder">
+        This is where the site preview will appear.
+      </div>
+    </mat-card-content>
+  </mat-card>
+  
+
+  <ng-template #notFound>
+    <mat-card>
+      <mat-card-content>
+        <p>No bookmark found. It may have been deleted or the link is incorrect.</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-stroked-button color="warn" routerLink="/overview">
+          Return Home
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-template>
 </div>
-
-<ng-template #notFound>
-  <p>No bookmark found. It may have been deleted or the link is incorrect.</p>
-</ng-template>
-
-<a routerLink="/overview">Back to Overview</a>

@@ -1,8 +1,28 @@
-h2 {
-    margin-top: 2rem;
-  }
-  a {
-    display: inline-block;
-    margin-top: 1rem;
-  }
+.result-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 24px;
+}
+
+mat-card {
+  padding: 16px;
+}
+
+.preview-placeholder {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f5f5f5;
+  color: #666;
+  font-style: italic;
+  border: 1px dashed #ccc;
+}
+
+.nav-card {
+  display: flex;
+  justify-content: flex-start;
+  padding: 16px;
+}
   
