@@ -91,7 +91,6 @@ button[type="submit"] {
 }
 
 .bookmark-link {
-  color: #1a73e8;
   display: inline-block;
   flex: 1;
   font-weight: 500;
@@ -116,7 +115,19 @@ button[type="submit"] {
 mat-card.bookmark-list mat-list {
   max-height: 100%;
   overflow-y: auto;
-  padding-right: 4px;
+  padding: 0px;
+  border: 1px solid #ddd7f4;
+  margin-top: 16px;
+}
+
+mat-list-item:nth-child(even) {
+  background-color: #f9f9f9;
+  color: #673dff;
+}
+
+mat-list-item:nth-child(odd) {
+  background-color: #f8f6ff;
+  color: #3d1abc;
 }
 
 .empty-text {
@@ -137,4 +148,11 @@ mat-card.bookmark-list mat-list {
   justify-content: center;
   margin-top: 1rem;
   min-height: 48px;
+}
+.pagination-controls button.active {
+  font-weight: bold;
+  text-decoration: underline;
+  background-color: #673dff;
+  color: white;
+  border-radius: 40px;
 }

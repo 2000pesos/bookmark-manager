@@ -29,22 +29,22 @@
 
     <p class="meta-row">
       <mat-icon fontIcon="article"></mat-icon>
-      <span><strong>Description:</strong> {{ description || 'Description loading...' }}</span>
+      <span><strong>Description: </strong>{{ description || 'Description loading...' }}</span>
     </p>
 
     <p class="meta-row">
       <mat-icon fontIcon="link"></mat-icon>
-      <span><strong>URL:</strong> <a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></span>
+      <span><strong>URL: </strong><a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></span>
     </p>
 
     <p class="meta-row">
       <mat-icon fontIcon="confirmation_number"></mat-icon>
-      <span><strong>ID:</strong> {{ bookmark?.id }}</span>
+      <span><strong>ID: </strong>{{ bookmark?.id }}</span>
     </p>
 
     <p class="meta-row">
       <mat-icon fontIcon="calendar_month"></mat-icon>
-      <span><strong>Created:</strong> {{ bookmark?.createdAt | date: 'medium' }}</span>
+      <span><strong>Created: </strong>{{ bookmark?.createdAt | date: 'medium' }}</span>
     </p>
   </mat-card>
 

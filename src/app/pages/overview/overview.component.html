@@ -112,6 +112,7 @@
         <button
           mat-button
           [color]="currentPage === i + 1 ? 'primary' : undefined"
+          [ngClass]="{ active: currentPage === i + 1 }"
           (click)="changePage(i + 1)"
         >
           {{ i + 1 }}
