@@ -28,8 +28,8 @@ exports.handler = async (event) => {
 
     const title = $('title').first().text().trim();
     const articleText = 
-    $('article').text().trim() ||
-    $('*[role="main"]').text().trim();
+      $('article').text().trim() ||
+      $('*[role="main"]').text().trim();
 
     const mainImage =
       $('article picture').first().find('img').attr('src') ||
