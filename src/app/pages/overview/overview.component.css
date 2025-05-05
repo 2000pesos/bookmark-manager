@@ -134,6 +134,8 @@ mat-list-item:nth-child(odd) {
   color: gray;
   font-style: italic;
   margin: 1rem 0 0 0.5rem;
+  text-align: center;
+  font-size: 20px;
 }
 
 /* === Pagination === */
