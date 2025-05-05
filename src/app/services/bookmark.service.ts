@@ -18,7 +18,7 @@ export class BookmarkService {
   public fetchMetadata(url: string) {
     const encoded = encodeURIComponent(url);
     return this.http.get<{ title: string; description: string; articleText: string; mainImage: string; }>(
-      `http://localhost:3400/api/scrape?url=${encoded}`
+      `/.netlify/functions/scrape-article?url=${encoded}`
     );
   }
 

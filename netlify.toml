@@ -1,6 +1,7 @@
 [build]
   command = "ng build --configuration production"
   publish = "dist/bookmark-manager"
+  functions = "netlify/functions"
 
 [[redirects]]
   from = "/*"
