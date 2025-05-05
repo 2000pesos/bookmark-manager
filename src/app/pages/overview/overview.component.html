@@ -1,7 +1,6 @@
 <div class="page-container">
   <mat-card class="bookmark-form">
-    <mat-card-title>Add a Bookmark</mat-card-title>
-    
+    <mat-card-title><mat-icon fontIcon="bookmark"></mat-icon> Add a Bookmark</mat-card-title>
     <form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <mat-form-field appearance="fill">
@@ -21,7 +20,7 @@
     </form>
   </mat-card>
   <mat-card class="bookmark-list">
-    <mat-card-title>Saved Bookmarks</mat-card-title>
+    <mat-card-title><mat-icon fontIcon="list_alt"></mat-icon> Saved Bookmarks</mat-card-title>
   
     <ng-container *ngIf="bookmarks.length > 0; else noBookmarks">
       <mat-list>
@@ -31,10 +30,10 @@
               {{ bookmark.url }}
             </a>
             <div class="bookmark-actions">
-              <button mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
+              <button matTooltip="View Bookmark Details" mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
                 <mat-icon>visibility</mat-icon>
               </button>
-              <button mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
+              <button matTooltip="Delete Bookmark" mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
                 <mat-icon>delete</mat-icon>
               </button>
             </div>
@@ -42,12 +41,7 @@
         </mat-list-item>
       </mat-list>
     </ng-container>
-  
-    <ng-template #noBookmarks>
-      <p class="empty-text">No bookmarks yet. Add one above!</p>
-    </ng-template>
-  </mat-card>
-  <mat-card *ngIf="totalPages > 1" class="bookmark-pagination">
+
     <mat-card-content class="pagination-controls">
       <button
         mat-icon-button
@@ -74,7 +68,9 @@
         <mat-icon>chevron_right</mat-icon>
       </button>
     </mat-card-content>
+  
+    <ng-template #noBookmarks>
+      <p class="empty-text">No bookmarks yet. Add one above!</p>
+    </ng-template>
   </mat-card>
-  
-  
 </div>

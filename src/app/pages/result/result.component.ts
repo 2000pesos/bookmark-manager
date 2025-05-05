@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BookmarkService, Bookmark } from '../../services/bookmark.service';
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-result',
@@ -15,7 +16,8 @@ import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/
     MatCard,
     MatCardTitle,
     MatCardContent,
-    MatCardActions
+    MatCardActions,
+    MatIcon
   ],
 })
 export class ResultComponent {

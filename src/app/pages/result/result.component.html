@@ -1,26 +1,36 @@
 <div class="result-container">
   <!-- Bookmark Metadata -->
-  <mat-card class="bookmark-card">
-    <a class="back-to-list-link" routerLink="/overview">Back to list</a>
-    <mat-card-title>Bookmark Details</mat-card-title>
-    <mat-card-content>
-      <h3 *ngIf="bookmark?.url"> {{ title || 'Title loading...' }}</h3>
-      <p><strong>URL:</strong> <a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></p>
-      <p><strong>ID:</strong> {{ bookmark?.id }}</p>
-      <p><strong>Created:</strong> {{ bookmark?.createdAt | date: 'medium' }}</p>
-      <p><strong>Description:</strong> {{ description || 'Description loading...' }}</p>
-    </mat-card-content>
+  <mat-card class="bookmark-details-card">
+    <p class="back-to-list-link"><mat-icon fontIcon="arrow_back"></mat-icon> <a routerLink="/overview">Back to list</a></p>
+    <mat-card-title><mat-icon fontIcon="book"></mat-icon> {{ title || 'Bookmark Details' }}</mat-card-title>
+    <p class="meta-row">
+      <mat-icon fontIcon="article"></mat-icon>
+      <span><strong>Description: </strong>{{ description || 'Description loading...' }}</span>
+    </p>
+    
+    <p class="meta-row">
+      <mat-icon fontIcon="link"></mat-icon>
+      <span><strong>URL: </strong><a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></span>
+    </p>
+    
+    <p class="meta-row">
+      <mat-icon fontIcon="confirmation_number"></mat-icon>
+      <span><strong>ID: </strong>{{ bookmark?.id }}</span>
+    </p>
+    
+    <p class="meta-row">
+      <mat-icon fontIcon="calendar_month"></mat-icon>
+      <span><strong>Created: </strong>{{ bookmark?.createdAt | date: 'medium' }}</span>
+    </p>
   </mat-card>
 
   <!-- Site Preview -->
-  <mat-card class="preview-card">
-    <mat-card-title>Site Preview</mat-card-title>
-    <mat-card-content>
-      <div class="preview-placeholder">
-        <img *ngIf="mainImage" src={{mainImage}} />
-        <p>{{ articleText || 'Loading article contents...'}}</p>
-      </div>
-    </mat-card-content>
+  <mat-card class="bookmark-preview-card">
+    <mat-card-title><mat-icon fontIcon="preview"></mat-icon> Preview</mat-card-title>
+    <div class="preview-placeholder">
+      <img *ngIf="mainImage" src={{mainImage}} />
+      <p>{{ articleText || 'Loading article contents...'}}</p>
+    </div>
   </mat-card>
   
 
