@@ -25,13 +25,16 @@ app.get('/api/scrape', async (req, res) => {
     const $ = cheerio.load(response.data);
 
     const title = $('title').first().text().trim();
-
+    const articleText = $('article').text();
+    const mainImage = 
+    $('article picture').first().find('img').attr('src') || 
+    $('article img').first().attr('src');
     const description =
       $('meta[name="description"]').attr('content') ||
       $('meta[property="og:description"]').attr('content') ||
       null;
 
-    res.json({ title, description });
+    res.json({ title, description, articleText, mainImage });
   } catch (error) {
     console.error('[SCRAPER ERROR]', error.message);
     res.status(500).json({ error: 'Failed to fetch page', details: error.message });
@@ -39,5 +42,5 @@ app.get('/api/scrape', async (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`🚀 Scraper running at http://localhost:${PORT}`);
+  console.log(`Scraper running at http://localhost:${PORT}`);
 });

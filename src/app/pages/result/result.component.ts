@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { BookmarkService, Bookmark } from '../../services/bookmark.service';
-import { MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle } from '@angular/material/card';
+import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
 
 @Component({
   selector: 'app-result',
@@ -14,7 +14,6 @@ import { MatCard, MatCardActions, MatCardContent, MatCardSubtitle, MatCardTitle 
     RouterModule,
     MatCard,
     MatCardTitle,
-    MatCardSubtitle,
     MatCardContent,
     MatCardActions
   ],
@@ -26,6 +25,8 @@ export class ResultComponent {
   tags = [];
   description: string | null = null;
   title: string | null = null;
+  articleText: string | null = null;
+  mainImage: string | null = null;
 
   constructor(private route: ActivatedRoute, private router: Router, private bookmarkService: BookmarkService) {
     const id = this.route.snapshot.paramMap.get('id');
@@ -40,11 +41,14 @@ export class ResultComponent {
         next: (data) => {
           this.title = data.title;
           this.description = data.description;
+          this.articleText = data.articleText;
+          this.mainImage = data.mainImage;
         },
         error: (err) => {
           console.error('Scrape failed', err);
           this.title = "Could not fetch title.";
-          this.description = "Could not fetch description";
+          this.description = "Could not fetch description.";
+          this.articleText = "Could not fetch page contents.";
         }
       });
     }

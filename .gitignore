@@ -11,6 +11,9 @@
 npm-debug.log
 yarn-error.log
 
+# Scraper
+/server/node_modules
+
 # IDEs and editors
 .idea/
 .project

@@ -17,11 +17,11 @@ export class BookmarkService {
 
   public fetchMetadata(url: string) {
     const encoded = encodeURIComponent(url);
-    return this.http.get<{ title: string; description: string }>(
+    return this.http.get<{ title: string; description: string; articleText: string; mainImage: string; }>(
       `http://localhost:3400/api/scrape?url=${encoded}`
     );
   }
-  
+
   public getListOfBookmarks(page?: number, perPage: number = 20): Bookmark[] {
     const bookmarks = this.getBookmarks();
 
