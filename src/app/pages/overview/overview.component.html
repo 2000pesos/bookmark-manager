@@ -36,6 +36,14 @@
         >
           Please enter a valid URL
         </mat-error>
+        <mat-error
+          *ngIf="
+            bookmarkForm.get('url')?.value.length === 0 &&
+            bookmarkForm.get('url')?.touched
+          "
+        >
+          Url cannot be empty.
+        </mat-error>
       </div>
     </form>
   </mat-card>
