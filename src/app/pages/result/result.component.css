@@ -1,122 +1,123 @@
+/* === Layout === */
 .result-container {
+  align-items: flex-start;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  margin: auto;
-  padding: 24px 24px;
   height: 100vh;
+  margin: auto;
   max-width: 960px;
+  padding: 24px;
   width: 100%;
-  box-sizing: border-box;
 }
 
 mat-card {
-  width: 100%;
-  max-width: 100%;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  box-sizing: border-box;
   margin-bottom: 1em;
+  max-width: 100%;
+  padding: 24px;
+  width: 100%;
 }
+
 mat-card.bookmark-details-card {
-  flex-shrink: 0;
   flex-grow: 1;
+  flex-shrink: 0;
 }
+
 mat-card.bookmark-preview-card {
   height: 40vh;
 }
+
 mat-card-title {
   align-items: center;
   display: flex;
   gap: 5px;
 }
+
 mat-card p {
   margin-bottom: 0.5em;
   margin-top: 0.5em;
 }
+
+/* === Preview Section === */
 .preview-placeholder {
+  background-color: #f5f5f5;
+  border: 1px dashed #ccc;
+  color: #333;
   display: flex;
   flex-direction: column;
+  font-style: italic;
   gap: 12px;
   margin-top: 15px;
-  width: 100%;
   max-height: 100%;
   overflow-y: auto;
-  background-color: #f5f5f5;
-  color: #333;
-  font-style: italic;
-  border: 1px dashed #ccc;
   white-space: pre-wrap;
+  width: 100%;
 }
-
 
 .preview-placeholder img {
-  max-width: 100%;
-  height: auto;
   border-radius: 8px;
+  height: auto;
+  max-width: 100%;
 }
 
-.nav-card {
-  display: flex;
-  justify-content: flex-start;
-  padding: 16px;
-}
-  
+/* === Metadata Rows === */
 .back-to-list-link {
+  align-items: center;
   display: flex;
   flex-direction: row;
-  align-items: center;
   margin-bottom: 10px;
 }
 
 .meta-row {
+  align-items: flex-start;
   display: flex;
-  align-items: flex-start; /* Align top of icon with top of text */
   gap: 8px;
-  margin: 8px 0;
   line-height: 1.4;
+  margin: 8px 0;
 }
 
 .meta-row mat-icon {
+  flex-shrink: 0;
   font-size: 20px;
-  margin-top: 2px; /* subtle nudge for better alignment */
-  flex-shrink: 0;   /* don't let icon scale */
+  margin-top: 2px;
 }
 
 .meta-row a {
   word-break: break-all;
 }
 
-/* THANK YOU BANNER */
+/* === Thank You Banner === */
 .thank-you-banner {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 16px;
   background-color: #e8f5e9;
-  color: #2e7d32;
-  margin-bottom: 16px;
   border-radius: 8px;
   box-sizing: border-box;
+  color: #2e7d32;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  width: 100%;
 }
 
 .thank-you-content {
-  display: flex;
   align-items: center;
+  display: flex;
   gap: 8px;
 }
 
 .close-btn {
+  align-items: center;
   background: none;
   border: none;
-  cursor: pointer;
-  padding: 4px;
-  margin-left: 8px;
-  display: flex;
-  align-items: center;
   border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  margin-left: 8px;
+  padding: 4px;
   transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
 

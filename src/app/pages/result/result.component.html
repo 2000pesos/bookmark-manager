@@ -1,52 +1,73 @@
 <div class="result-container">
-  <!-- Bookmark Metadata -->
+  <!-- Thank You Banner -->
   <div *ngIf="showThankYou" class="thank-you-banner mat-elevation-z2">
     <div class="thank-you-content">
       <mat-icon color="primary">check_circle</mat-icon>
       <span>Thank you for submitting!</span>
     </div>
-    <button mat-icon-button class="close-btn" (click)="showThankYou = false" aria-label="Close">
+    <button
+      mat-icon-button
+      class="close-btn"
+      (click)="showThankYou = false"
+      aria-label="Close"
+    >
       <mat-icon>close</mat-icon>
     </button>
   </div>
+
+  <!-- Bookmark Metadata -->
   <mat-card class="bookmark-details-card">
-    <p class="back-to-list-link"><mat-icon fontIcon="arrow_back"></mat-icon> <a routerLink="/overview">Back to list</a></p>
-    <mat-card-title><mat-icon fontIcon="book"></mat-icon> {{ title || 'Bookmark Details' }}</mat-card-title>
+    <p class="back-to-list-link">
+      <mat-icon fontIcon="arrow_back"></mat-icon>
+      <a routerLink="/overview">Back to list</a>
+    </p>
+
+    <mat-card-title>
+      <mat-icon fontIcon="book"></mat-icon>
+      {{ title || 'Bookmark Details' }}
+    </mat-card-title>
+
     <p class="meta-row">
       <mat-icon fontIcon="article"></mat-icon>
-      <span><strong>Description: </strong>{{ description || 'Description loading...' }}</span>
+      <span><strong>Description:</strong> {{ description || 'Description loading...' }}</span>
     </p>
-    
+
     <p class="meta-row">
       <mat-icon fontIcon="link"></mat-icon>
-      <span><strong>URL: </strong><a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></span>
+      <span><strong>URL:</strong> <a [href]="bookmark?.url" target="_blank">{{ bookmark?.url }}</a></span>
     </p>
-    
+
     <p class="meta-row">
       <mat-icon fontIcon="confirmation_number"></mat-icon>
-      <span><strong>ID: </strong>{{ bookmark?.id }}</span>
+      <span><strong>ID:</strong> {{ bookmark?.id }}</span>
     </p>
-    
+
     <p class="meta-row">
       <mat-icon fontIcon="calendar_month"></mat-icon>
-      <span><strong>Created: </strong>{{ bookmark?.createdAt | date: 'medium' }}</span>
+      <span><strong>Created:</strong> {{ bookmark?.createdAt | date: 'medium' }}</span>
     </p>
   </mat-card>
 
   <!-- Site Preview -->
   <mat-card class="bookmark-preview-card">
-    <mat-card-title><mat-icon fontIcon="preview"></mat-icon> Preview</mat-card-title>
+    <mat-card-title>
+      <mat-icon fontIcon="preview"></mat-icon>
+      Preview
+    </mat-card-title>
+
     <div class="preview-placeholder">
-      <img *ngIf="mainImage" src={{mainImage}} />
-      <p>{{ articleText || 'Loading article contents...'}}</p>
+      <img *ngIf="mainImage" [src]="mainImage" />
+      <p>{{ articleText || 'Loading article contents...' }}</p>
     </div>
   </mat-card>
-  
 
+  <!-- Not Found Fallback -->
   <ng-template #notFound>
     <mat-card>
       <mat-card-content>
-        <p>No bookmark found. It may have been deleted or the link is incorrect.</p>
+        <p>
+          No bookmark found. It may have been deleted or the link is incorrect.
+        </p>
       </mat-card-content>
       <mat-card-actions>
         <button mat-stroked-button color="warn" routerLink="/overview">
