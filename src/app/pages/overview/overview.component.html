@@ -1,43 +1,84 @@
 <div class="page-container">
+  <!-- Form to add a new bookmark -->
   <mat-card class="bookmark-form">
-    <mat-card-title><mat-icon fontIcon="bookmark"></mat-icon> Add a Bookmark</mat-card-title>
+    <mat-card-title>
+      <mat-icon fontIcon="bookmark"></mat-icon>
+      Add a Bookmark
+    </mat-card-title>
+
     <form [formGroup]="bookmarkForm" (ngSubmit)="onSubmit()">
       <div class="form-row">
         <mat-form-field appearance="fill">
           <mat-label>Bookmark URL</mat-label>
-          <input matInput formControlName="url" placeholder="https://example.com" />
+          <input
+            matInput
+            formControlName="url"
+            placeholder="https://example.com"
+          />
         </mat-form-field>
-  
-        <button mat-raised-button color="primary" type="submit" [disabled]="bookmarkForm.invalid">
+
+        <button
+          mat-raised-button
+          color="primary"
+          type="submit"
+          [disabled]="bookmarkForm.invalid"
+        >
           Add Bookmark
         </button>
       </div>
+
       <div class="error-row">
-        <mat-error *ngIf="bookmarkForm.get('url')?.hasError('invalidUrl') && bookmarkForm.get('url')?.touched">
+        <mat-error
+          *ngIf="
+            bookmarkForm.get('url')?.hasError('invalidUrl') &&
+            bookmarkForm.get('url')?.touched
+          "
+        >
           Please enter a valid URL
         </mat-error>
       </div>
     </form>
   </mat-card>
+
+  <!-- List of saved bookmarks -->
   <mat-card class="bookmark-list">
     <mat-card-title>
       <mat-icon fontIcon="list_alt"></mat-icon>
       Saved Bookmarks
     </mat-card-title>
-  
+
     <div class="mat-list-wrapper">
       <ng-container *ngIf="bookmarks.length > 0; else noBookmarks">
         <mat-list>
           <mat-list-item *ngFor="let bookmark of bookmarks">
             <div class="list-content">
-              <a matTooltip="{{ bookmark.url }}" class="bookmark-link" [href]="bookmark.url" target="_blank">
+              <a
+                matTooltip="{{ bookmark.url }}"
+                class="bookmark-link"
+                [href]="bookmark.url"
+                target="_blank"
+              >
                 {{ bookmark.url }}
               </a>
+
               <div class="bookmark-actions">
-                <button matTooltip="View Bookmark Details" mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
+                <button
+                  matTooltip="View Bookmark Details"
+                  mat-icon-button
+                  color="primary"
+                  aria-label="View"
+                  (click)="viewBookmarkDetails(bookmark.id)"
+                >
                   <mat-icon>visibility</mat-icon>
                 </button>
-                <button matTooltip="Delete Bookmark" mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
+
+                <button
+                  matTooltip="Delete Bookmark"
+                  mat-icon-button
+                  color="warn"
+                  aria-label="Delete"
+                  (click)="deleteBookmark(bookmark.id)"
+                >
                   <mat-icon>delete</mat-icon>
                 </button>
               </div>
@@ -45,26 +86,41 @@
           </mat-list-item>
         </mat-list>
       </ng-container>
+
       <ng-template #noBookmarks>
         <p class="empty-text">No bookmarks yet. Add one above!</p>
       </ng-template>
     </div>
-  
+
+    <!-- Pagination controls -->
     <div class="pagination-controls">
-      <button mat-icon-button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" aria-label="Previous page">
+      <button
+        mat-icon-button
+        (click)="changePage(currentPage - 1)"
+        [disabled]="currentPage === 1"
+        aria-label="Previous page"
+      >
         <mat-icon>chevron_left</mat-icon>
       </button>
-  
+
       <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
-        <button mat-button [color]="currentPage === i + 1 ? 'primary' : undefined" (click)="changePage(i + 1)">
+        <button
+          mat-button
+          [color]="currentPage === i + 1 ? 'primary' : undefined"
+          (click)="changePage(i + 1)"
+        >
           {{ i + 1 }}
         </button>
       </ng-container>
-  
-      <button mat-icon-button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" aria-label="Next page">
+
+      <button
+        mat-icon-button
+        (click)="changePage(currentPage + 1)"
+        [disabled]="currentPage === totalPages"
+        aria-label="Next page"
+      >
         <mat-icon>chevron_right</mat-icon>
       </button>
     </div>
   </mat-card>
-  
 </div>

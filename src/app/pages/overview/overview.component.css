@@ -1,43 +1,52 @@
+/* === Layout Containers === */
+.page-container {
+  align-items: center;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: auto;
+  max-width: 960px;
+  padding: 24px;
+  width: 100%;
+}
 
 .full-width {
   width: 100%;
 }
 
-.page-container {
+/* === Card Styling === */
+mat-card.bookmark-form,
+mat-card.bookmark-list,
+mat-card.bookmark-pagination {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  margin: auto;
-  padding: 24px 24px;
-  height: 100vh;
-  max-width: 960px;
+  margin-bottom: 1em;
+  max-width: 100%;
+  padding: 24px;
   width: 100%;
-  box-sizing: border-box;
 }
+
 mat-card.bookmark-form,
 mat-card.bookmark-pagination {
-  flex-shrink: 0;
   flex-grow: 1;
+  flex-shrink: 0;
 }
+
 mat-card.bookmark-list {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  min-height: 40vh;
-  max-height: 60vh;
   height: 100%;
+  justify-content: space-between;
+  max-height: 60vh;
+  min-height: 40vh;
   position: relative;
 }
-mat-card.bookmark-form, 
-mat-card.bookmark-list, 
-mat-card.bookmark-pagination {
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  box-sizing: border-box;
-  margin-bottom: 1em;
+
+/* === Form Layout === */
+mat-card.bookmark-form form {
+  margin-top: 16px;
 }
 
 mat-card-title {
@@ -45,34 +54,11 @@ mat-card-title {
   display: flex;
   gap: 5px;
 }
-/* BOOKMARK FORM */
-mat-card.bookmark-list mat-list {
-  overflow-y: auto;
-  max-height: 100%;
-  padding-right: 4px;
-}
-mat-card.bookmark-form form {
-  margin-top: 16px;
-}
-.mat-form-field {
-  flex: 1;
-}
+
 .form-row {
+  align-items: center;
   display: flex;
   gap: 1rem;
-  align-items: center;
-}
-.flex-grow {
-  flex: 1;
-}
-
-.error-row {
-  margin-top: 4px;
-  color: red;
-  font-size: 0.85rem;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
 }
 
 mat-form-field {
@@ -80,42 +66,45 @@ mat-form-field {
   min-width: 0;
 }
 
-mat-card.bookmark-form button[type="submit"] {
+button[type="submit"] {
   align-self: flex-start;
-  white-space: nowrap;
   height: 56px;
+  white-space: nowrap;
 }
 
-/* BOOKMARKS LIST */
+.error-row {
+  color: red;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.85rem;
+  gap: 2px;
+  margin-top: 4px;
+}
+
+/* === Bookmark List === */
 .list-content {
+  align-items: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
   display: flex;
   justify-content: space-between;
-  align-items: center;
   padding: 0.75rem 0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.bookmark-actions {
-  display: flex;
-  gap: 0.5rem;
-  align-items: center;
 }
 
 .bookmark-link {
   color: #1a73e8;
-  font-weight: 500;
-  text-decoration: none;
-  flex: 1;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
   display: inline-block;
+  flex: 1;
+  font-weight: 500;
+  overflow: hidden;
+  text-decoration: none;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.empty-text {
-  color: gray;
-  font-style: italic;
-  margin: 1rem 0 0 0.5rem;
+.bookmark-actions {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
 }
 
 .mat-list-wrapper {
@@ -124,17 +113,28 @@ mat-card.bookmark-form button[type="submit"] {
   padding-right: 4px;
 }
 
+mat-card.bookmark-list mat-list {
+  max-height: 100%;
+  overflow-y: auto;
+  padding-right: 4px;
+}
 
-/* PAGINATION */
+.empty-text {
+  color: gray;
+  font-style: italic;
+  margin: 1rem 0 0 0.5rem;
+}
+
+/* === Pagination === */
 .bookmark-pagination {
   display: flex;
   justify-content: center;
 }
 
 .pagination-controls {
+  align-items: center;
   display: flex;
   justify-content: center;
-  align-items: center;
   margin-top: 1rem;
   min-height: 48px;
 }
