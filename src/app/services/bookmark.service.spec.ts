@@ -1,11 +1,12 @@
 import { TestBed } from '@angular/core/testing';
+
 import { BookmarkService, Bookmark } from './bookmark.service';
 
 describe('BookmarkService', () => {
   let service: BookmarkService;
 
   beforeEach(() => {
-    localStorage.clear(); // reset between tests
+    localStorage.clear();
     TestBed.configureTestingModule({});
     service = TestBed.inject(BookmarkService);
   });
