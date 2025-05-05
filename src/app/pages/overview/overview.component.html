@@ -93,7 +93,10 @@
     </div>
 
     <!-- Pagination controls -->
-    <div class="pagination-controls">
+    <div
+      class="pagination-controls"
+      *ngIf="bookmarks.length > 0 && totalPages > 1"
+    >
       <button
         mat-icon-button
         (click)="changePage(currentPage - 1)"
@@ -103,7 +106,9 @@
         <mat-icon>chevron_left</mat-icon>
       </button>
 
-      <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
+      <ng-container
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+      >
         <button
           mat-button
           [color]="currentPage === i + 1 ? 'primary' : undefined"
