@@ -31,9 +31,15 @@ mat-card.bookmark-preview-card {
 }
 
 mat-card-title {
-  align-items: center;
-  display: flex;
-  gap: 5px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  gap: 8px;
+}
+
+mat-card-title mat-icon {
+  margin-top: 2px;
+  font-size: 20px;
 }
 
 mat-card p {

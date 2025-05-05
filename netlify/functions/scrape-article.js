@@ -27,11 +27,14 @@ exports.handler = async (event) => {
     const $ = cheerio.load(response.data);
 
     const title = $('title').first().text().trim();
-    const articleText = $('article').text().trim();
+    const articleText = 
+    $('article').text().trim() ||
+    $('*[role="main"]').text().trim();
 
     const mainImage =
       $('article picture').first().find('img').attr('src') ||
       $('article img').first().attr('src') ||
+      $('meta[property="og:image"]').attr('content') ||
       null;
 
     const description =
