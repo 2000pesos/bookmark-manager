@@ -1,5 +1,14 @@
 <div class="result-container">
   <!-- Bookmark Metadata -->
+  <div *ngIf="showThankYou" class="thank-you-banner mat-elevation-z2">
+    <div class="thank-you-content">
+      <mat-icon color="primary">check_circle</mat-icon>
+      <span>Thank you for submitting!</span>
+    </div>
+    <button mat-icon-button class="close-btn" (click)="showThankYou = false" aria-label="Close">
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
   <mat-card class="bookmark-details-card">
     <p class="back-to-list-link"><mat-icon fontIcon="arrow_back"></mat-icon> <a routerLink="/overview">Back to list</a></p>
     <mat-card-title><mat-icon fontIcon="book"></mat-icon> {{ title || 'Bookmark Details' }}</mat-card-title>

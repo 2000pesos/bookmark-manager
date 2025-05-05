@@ -87,3 +87,40 @@ mat-card p {
 .meta-row a {
   word-break: break-all;
 }
+
+/* THANK YOU BANNER */
+.thank-you-banner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.thank-you-content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  transform: scale(1.1);
+}
