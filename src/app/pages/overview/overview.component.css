@@ -20,9 +20,13 @@ mat-card.bookmark-pagination {
   flex-grow: 1;
 }
 mat-card.bookmark-list {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   min-height: 40vh;
   max-height: 60vh;
   height: 100%;
+  position: relative;
 }
 mat-card.bookmark-form, 
 mat-card.bookmark-list, 
@@ -114,6 +118,13 @@ mat-card.bookmark-form button[type="submit"] {
   margin: 1rem 0 0 0.5rem;
 }
 
+.mat-list-wrapper {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
+
 /* PAGINATION */
 .bookmark-pagination {
   display: flex;
@@ -122,6 +133,8 @@ mat-card.bookmark-form button[type="submit"] {
 
 .pagination-controls {
   display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+  min-height: 48px;
 }

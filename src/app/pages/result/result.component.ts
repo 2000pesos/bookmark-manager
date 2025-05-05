@@ -48,7 +48,7 @@ export class ResultComponent {
         },
         error: (err) => {
           console.error('Scrape failed', err);
-          this.title = "Could not fetch title.";
+          this.title = null;
           this.description = "Could not fetch description.";
           this.articleText = "Could not fetch page contents.";
         }

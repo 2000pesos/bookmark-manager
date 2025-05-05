@@ -20,57 +20,51 @@
     </form>
   </mat-card>
   <mat-card class="bookmark-list">
-    <mat-card-title><mat-icon fontIcon="list_alt"></mat-icon> Saved Bookmarks</mat-card-title>
+    <mat-card-title>
+      <mat-icon fontIcon="list_alt"></mat-icon>
+      Saved Bookmarks
+    </mat-card-title>
   
-    <ng-container *ngIf="bookmarks.length > 0; else noBookmarks">
-      <mat-list>
-        <mat-list-item *ngFor="let bookmark of bookmarks">
-          <div class="list-content">
-            <a matTooltip="{{ bookmark.url }}" class="bookmark-link" [href]="bookmark.url" target="_blank">
-              {{ bookmark.url }}
-            </a>
-            <div class="bookmark-actions">
-              <button matTooltip="View Bookmark Details" mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
-                <mat-icon>visibility</mat-icon>
-              </button>
-              <button matTooltip="Delete Bookmark" mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
-                <mat-icon>delete</mat-icon>
-              </button>
+    <div class="mat-list-wrapper">
+      <ng-container *ngIf="bookmarks.length > 0; else noBookmarks">
+        <mat-list>
+          <mat-list-item *ngFor="let bookmark of bookmarks">
+            <div class="list-content">
+              <a matTooltip="{{ bookmark.url }}" class="bookmark-link" [href]="bookmark.url" target="_blank">
+                {{ bookmark.url }}
+              </a>
+              <div class="bookmark-actions">
+                <button matTooltip="View Bookmark Details" mat-icon-button color="primary" aria-label="View" (click)="viewBookmarkDetails(bookmark.id)">
+                  <mat-icon>visibility</mat-icon>
+                </button>
+                <button matTooltip="Delete Bookmark" mat-icon-button color="warn" aria-label="Delete" (click)="deleteBookmark(bookmark.id)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </div>
             </div>
-          </div>
-        </mat-list-item>
-      </mat-list>
-    </ng-container>
-
-    <mat-card-content class="pagination-controls">
-      <button
-        mat-icon-button
-        (click)="changePage(currentPage - 1)"
-        [disabled]="currentPage === 1"
-        aria-label="Previous page">
+          </mat-list-item>
+        </mat-list>
+      </ng-container>
+      <ng-template #noBookmarks>
+        <p class="empty-text">No bookmarks yet. Add one above!</p>
+      </ng-template>
+    </div>
+  
+    <div class="pagination-controls">
+      <button mat-icon-button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1" aria-label="Previous page">
         <mat-icon>chevron_left</mat-icon>
       </button>
   
       <ng-container *ngFor="let page of [].constructor(totalPages); let i = index">
-        <button
-          mat-button
-          [color]="currentPage === i + 1 ? 'primary' : undefined"
-          (click)="changePage(i + 1)">
+        <button mat-button [color]="currentPage === i + 1 ? 'primary' : undefined" (click)="changePage(i + 1)">
           {{ i + 1 }}
         </button>
       </ng-container>
   
-      <button
-        mat-icon-button
-        (click)="changePage(currentPage + 1)"
-        [disabled]="currentPage === totalPages"
-        aria-label="Next page">
+      <button mat-icon-button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages" aria-label="Next page">
         <mat-icon>chevron_right</mat-icon>
       </button>
-    </mat-card-content>
-  
-    <ng-template #noBookmarks>
-      <p class="empty-text">No bookmarks yet. Add one above!</p>
-    </ng-template>
+    </div>
   </mat-card>
+  
 </div>
