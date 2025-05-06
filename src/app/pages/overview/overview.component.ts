@@ -100,12 +100,7 @@ export class OverviewComponent implements OnInit {
   // Remove a bookmark and refresh list
   public deleteBookmark(id: string): void {
     this.bookmarkService.deleteBookmark(id);
-    
-    if (this.currentPage > this.totalPages) {
-      this.changePage(this.totalPages);
-    } else {
-      this.loadBookmarks();
-    }
+    this.loadBookmarks();
   }
 
   // Navigate to details view for a specific bookmark
@@ -120,6 +115,14 @@ export class OverviewComponent implements OnInit {
       this.PER_PAGE
     );
     this.totalPages = this.bookmarkService.getTotalPages(this.PER_PAGE);
+
+    if (this.currentPage > this.totalPages) {
+      this.router.navigate([], {
+        relativeTo: this.route,
+        queryParams: { page: this.totalPages },
+        queryParamsHandling: 'merge'
+      });
+    }
   }
 
   // Custom validator to check for valid URLs
