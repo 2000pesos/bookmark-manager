@@ -100,7 +100,12 @@ export class OverviewComponent implements OnInit {
   // Remove a bookmark and refresh list
   public deleteBookmark(id: string): void {
     this.bookmarkService.deleteBookmark(id);
-    this.loadBookmarks();
+    
+    if (this.currentPage > this.totalPages) {
+      this.changePage(this.totalPages);
+    } else {
+      this.loadBookmarks();
+    }
   }
 
   // Navigate to details view for a specific bookmark
